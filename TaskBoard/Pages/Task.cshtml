@@ -1,0 +1,47 @@
+﻿@page
+@using TaskBoard.Models
+@model TaskBoard.Pages.TaskModel
+@{
+    ViewData["Title"] = "Task";
+}
+
+<form method="post">
+    <div class="mb-3">
+        <label class="form-label" asp-for="Progress">Progress</label>
+        <select class="form-control" asp-for="Progress" asp-items="@Html.GetEnumSelectList(typeof(TaskProgress))"></select>
+        <span class="text-danger small" asp-validation-for="Progress"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="Name">Name</label>
+        <input type="text" class="form-control" asp-for="Name" />
+        <span class="text-danger small" asp-validation-for="Name"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="Description">Description</label>
+        <input type="text" class="form-control" asp-for="Description" />
+        <span class="text-danger small" asp-validation-for="Description"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">To be done</label>
+        <input type="date" class="form-control" asp-for="ToBeDone" />
+        <span class="text-danger small" asp-validation-for="ToBeDone"></span>
+    </div>
+
+    <input type="hidden" asp-for="Id" />
+
+    @if (Model.IsNew)
+    {
+        <button type="submit" class="btn btn-primary" asp-page-handler="Create">Create</button>
+    }
+    else
+    {
+        <button type="submit" class="btn btn-primary" asp-page-handler="Save">Save</button>
+    }
+</form>
+
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

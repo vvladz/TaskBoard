@@ -1,0 +1,35 @@
+﻿@page
+@using TaskBoard.Models
+@model IndexModel
+@{
+    ViewData["Title"] = "Tasks";
+}
+
+<a class="btn btn-primary px-4" asp-page="Task">New</a>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="w-auto">Progress</th>
+            <th class="w-25">Name</th>
+            <th class="w-75">Description</th>
+            <th class="w-auto text-nowrap">To be done</th>
+            <th class="w-auto"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var task in Model.Tasks ?? Enumerable.Empty<TaskData>())
+        {
+            <tr class="align-baseline" onclick="window.location='@Url.PageLink("/Task", values: new{id = @task.Id})';">
+                <td class="w-auto">@task.Progress</td>
+                <td class="w-25 text-nowrap">@task.Name</td>
+                <td class="w-75 text-nowrap">@task.Description</td>
+                <td class="w-auto text-nowrap">@task.ToBeDone.ToString("D")</td>
+                <td class="w-auto">
+                    <a class="btn btn-outline-danger btn-sm" asp-page-handler="Delete" asp-route-id="@task.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
