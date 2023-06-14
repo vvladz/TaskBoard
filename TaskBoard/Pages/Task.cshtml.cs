@@ -9,7 +9,7 @@ namespace TaskBoard.Pages;
 
 public class TaskModel : PageModel
 {
-    private readonly DbContext _db;
+    private readonly IDbContext _db;
 
     [BindProperty]
     public Guid Id { get; set; }
@@ -31,7 +31,7 @@ public class TaskModel : PageModel
     [BindProperty]
     public bool IsNew { get; set; }
 
-    public TaskModel(DbContext db) =>
+    public TaskModel(IDbContext db) =>
         _db = db;
 
     public void OnGet(Guid? id)

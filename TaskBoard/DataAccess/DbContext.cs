@@ -3,7 +3,7 @@ using TaskBoard.Models;
 
 namespace TaskBoard.DataAccess;
 
-public class DbContext
+public class DbContext : IDbContext
 {
     private readonly ILiteCollection<TaskData> _tasks;
 

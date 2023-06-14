@@ -7,11 +7,11 @@ namespace TaskBoard.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly DbContext _db;
+        private readonly IDbContext _db;
 
         public List<TaskData>? Tasks { get; private set; }
 
-        public IndexModel(DbContext db) =>
+        public IndexModel(IDbContext db) =>
             _db = db;
 
         public void OnGet() =>

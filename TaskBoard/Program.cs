@@ -4,7 +4,7 @@ using TaskBoard.DataAccess;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddScoped<DbContext>();
+builder.Services.AddScoped<IDbContext, DbContext>();
 builder.Services.AddSingleton<ILiteDatabase>(
     _ => new LiteDatabase(builder.Configuration.GetConnectionString("TaskDb")));
 
